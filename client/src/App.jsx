@@ -1,12 +1,13 @@
+import { Routes, Route } from "react-router-dom";
+import Signin from "./pages/Signin";
+import Signup from "./pages/Signup";
+
 function App() {
   return (
-    <>
-      <div className="h-screen bg-gray-100 flex items-center justify-center">
-        <h1 className="text-4xl font-bold text-blue-600">
-          Hello Tailwind + Vite!
-        </h1>
-      </div>
-    </>
+    <Routes>
+      <Route path="/signin" element={<Signin />} />
+      <Route path="/signup" element={<Signup />} />
+    </Routes>
   );
 }
 
