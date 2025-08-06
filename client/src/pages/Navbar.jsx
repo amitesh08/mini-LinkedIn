@@ -37,7 +37,9 @@ const Navbar = () => {
   const handleProfile = () => {
     showToast("Navigating to profile...", "success");
     setShowDropdown(false);
-    navigate(`/profile/${user._id}`);
+    if (user && user._id) {
+      navigate(`/profile/${user._id}`);
+    }
   };
 
   return (
