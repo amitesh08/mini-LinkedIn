@@ -9,7 +9,7 @@ const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [toasts, setToasts] = useState([]);
-  const { setUser } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   // Animation on mount
@@ -58,14 +58,15 @@ const Signin = () => {
       );
 
       // Save user in global state
-      setUser(res.data.user);
-      console.log(res.data.user);
+      login(res.data.user);
 
       showToast("Welcome back! Signing you in...", "success");
 
       // Redirect to feed or home
-      //   navigate("/feed");
+      navigate("/feed");
     } catch (err) {
+      console.log(err);
+
       showToast(err.response?.data?.message || "Login failed", "error");
     } finally {
       setLoading(false);
