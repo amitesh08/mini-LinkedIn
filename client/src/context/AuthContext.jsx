@@ -4,12 +4,18 @@ import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Add loading state
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // Check if user is authenticated on app load
   useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      setIsAuthenticated(true);
+    }
+
     const checkAuth = async () => {
       try {
         const res = await axios.get(
@@ -41,6 +47,7 @@ export const AuthProvider = ({ children }) => {
   const login = (userData) => {
     setUser(userData);
     setIsAuthenticated(true);
+    localStorage.setItem("user", JSON.stringify(userData)); // ← save to localStorage
   };
 
   // Custom logout function
@@ -57,6 +64,7 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setUser(null);
       setIsAuthenticated(false);
+      localStorage.removeItem("user"); // ← remove from localStorage
     }
   };
 

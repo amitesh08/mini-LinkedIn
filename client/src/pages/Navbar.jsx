@@ -180,7 +180,7 @@ const Navbar = () => {
                   </div>
 
                   {/* Profile Option */}
-                  {user?._id && (
+                  {user && (
                     <button
                       onClick={handleProfile}
                       className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors flex items-center space-x-2"
