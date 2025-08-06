@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [toasts, setToasts] = useState([]);
-  const { user, logout } = useAuth();
+  const { user, logout, loading } = useAuth();
   const navigate = useNavigate();
 
   // Toast system
@@ -35,12 +35,26 @@ const Navbar = () => {
   };
 
   const handleProfile = () => {
-    showToast("Navigating to profile...", "success");
-    setShowDropdown(false);
-    if (user && user._id) {
+    // Check if user data is loaded and has an ID
+    if (!loading && user?._id) {
+      showToast("Navigating to profile...", "success");
+      setShowDropdown(false);
       navigate(`/profile/${user._id}`);
+    } else {
+      showToast("Loading user data...", "error");
     }
   };
+
+  // Don't render the navbar until user data is loaded
+  if (loading) {
+    return (
+      <nav className="sticky top-0 z-40 w-full flex justify-center bg-transparent py-2 backdrop-blur-md">
+        <div className="w-full max-w-2xl flex items-center justify-center bg-white/90 shadow-lg rounded-xl px-4 py-2 border border-white/40 backdrop-blur-sm">
+          <div className="animate-pulse text-gray-500">Loading...</div>
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <>
