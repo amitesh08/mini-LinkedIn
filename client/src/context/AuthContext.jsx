@@ -13,7 +13,8 @@ export const AuthProvider = ({ children }) => {
     const checkAuth = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_API_URL}/api/auth/me`,
+          //   `${import.meta.env.VITE_API_URL}/api/auth/me`,
+          "/api/auth/me",
           {
             withCredentials: true, // Include cookies/tokens
           }
@@ -46,7 +47,8 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/auth/logout`,
+        // `${import.meta.env.VITE_API_URL}/api/auth/logout`,
+        "/api/auth/logout",
         {},
         { withCredentials: true }
       );

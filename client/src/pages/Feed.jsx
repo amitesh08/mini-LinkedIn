@@ -37,7 +37,8 @@ const Feed = () => {
       setFetchingPosts(true);
 
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/posts/feed`,
+        // `${import.meta.env.VITE_API_URL}/api/posts/feed`,
+        "/api/posts/feed",
         {
           withCredentials: true,
         }
@@ -75,7 +76,8 @@ const Feed = () => {
       setLoading(true);
 
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/api/posts/create`,
+        // `${import.meta.env.VITE_API_URL}/api/posts/create`,
+        "/api/posts/create",
         { content: postContent },
         { withCredentials: true }
       );

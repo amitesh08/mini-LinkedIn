@@ -36,7 +36,8 @@ const Profile = () => {
       setDeletingPostId(postId);
 
       await axios.delete(
-        `${import.meta.env.VITE_API_URL}/api/posts/${postId}`,
+        // `${import.meta.env.VITE_API_URL}/api/posts/${postId}`,
+        `/api/posts/${postId}`,
         {
           withCredentials: true,
         }
@@ -62,7 +63,8 @@ const Profile = () => {
     try {
       setFetchingPosts(true);
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/posts/user/${profileUserId}`,
+        // `${import.meta.env.VITE_API_URL}/api/posts/user/${profileUserId}`,
+        `/api/posts/user/${profileUserId}`,
         {
           withCredentials: true,
         }
